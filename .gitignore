@@ -1,0 +1,9 @@
+/.venv
+/media
+/public
+*.pyc
+/devDocs
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
