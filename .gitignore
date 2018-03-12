@@ -2,6 +2,8 @@
 /media
 /public
 *.pyc
+*.DS_Store
+db.sqlite3
 /devDocs
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
