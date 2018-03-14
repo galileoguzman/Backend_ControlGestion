@@ -92,9 +92,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'gestiondb',
-            'USER': 'user_gestion_db',
-            'PASSWORD' : 'pwd_gestion_db',
+            'NAME': 'kinkydb',
+            'USER': 'user_kinky_db',
+            'PASSWORD' : 'pwd_kinky_db',
             'HOST': 'localhost',
             'PORT': 5432,
         }
