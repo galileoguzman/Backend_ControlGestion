@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Document, Importan
+#from .models import Sending
 
-# Register your models here.
+admin.site.register(Document)
+admin.site.register(Importan)

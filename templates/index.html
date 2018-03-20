@@ -1,9 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% load static %}<!DOCTYPE html>
 
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IEEPCO, Instituto Estatal Electoral y de Participación Ciudadana de Oaxaca. -  IEEPCO</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <img src="static/images/logo-ieepco.png">
+    <!--<i class="large material-icons">account_circle</i>{{document.user_id}}-->
+    <link href="#!" class="brand-logo"><i class="large right material-icons" >account_circle</i>
+    <link class="right">{{document.user_id}}</link>
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+    <nav>
+    <div class="nav-wrapper  red darken-4">
+      <a href="#" class="brand-logo">Últimos Documentos</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/capturar">Capturar</a></li>
+      <li><a href="/buscar">Buscar</a></li>
+      <li><a href="/notificaciones">Notificaciones<span class="new badge">4</span></a></li>
+    </ul>
+    </div>
+    </nav>
+  </head>
+
+  <body>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Folio</th>
+          <th>Remitente</th>
+          <th>Fecha</th>
+          <th>Importancia</th>
+          <th>Fecha de Expiracion</th>
+          <th>Opciones</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+          	{% for document in files %}
+            <td>
+
+              {{ document.folio }}
+              <!--<br>
+              <small style="color: #888">{{ document.description }}</small> -->
+            </td>
+            <td>{{ document.sender }}</td>
+            <td>{{ document.date }}</td>
+            <td>{{ document.importancia}}</td>
+            <td>{{ document.dateexp}}</td>
+            <td><a class="btn enabled  red lighten-2" href="/enviar">Enviar</a></td>
+            <td><a class="btn enabled  red lighten-2">Editar</a></td>
+            <td><a class="btn enabled  red lighten-2">Consultar</a></td>
+            
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+  
 </html>

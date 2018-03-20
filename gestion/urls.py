@@ -20,9 +20,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
+from files import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', views.home, name='index'),
+    url(r'^capturar/$', views.captura, name='captura'),
+    url(r'^buscar/$', views.buscar, name='buscar'),
+    url(r'^notificaciones/$', views.notificaciones, name='notificaciones'),
+    url(r'^enviar/$', views.envios, name='enviar'),
+
 ]
 
 # ADDED STATIC AND MEDIA URLS
