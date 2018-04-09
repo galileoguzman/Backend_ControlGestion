@@ -1,0 +1,42 @@
+{% load static %}<!DOCTYPE html>
+
+<html>
+ 
+  <head>
+  
+    <meta charset="utf-8">
+       <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static '/css/materialize.min.css' %}"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <script type="text/javascript" src="{% static '/js/materialize.js' %}"></script>
+     <script type="text/javascript" src="{% static '/js/materialize.min.js' %}"></script>
+    <img src="{% static '/images/logo-ieepco.png' %}">
+    <title>IEEPCO, Instituto Estatal Electoral y de Participación Ciudadana de Oaxaca. -  IEEPCO</title>
+    <!--<i class="large material-icons">account_circle</i>{{document.user_id}}-->
+    <link href="#!" class="brand-logo"><i class="large right material-icons" >account_circle</i>
+    {%block usuario%}{%endblock%}
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}"> 
+    {% block nav %} 
+
+    {% endblock %}
+ 
+  </head>
+ 
+  
+  <body>
+    {% block content%}
+    {% endblock %}
+
+      </tbody>
+    </table>
+  </body>
+        <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="{% static '/js/materialize.min.js' %}"></script>
+    </body>
+  
+</html>

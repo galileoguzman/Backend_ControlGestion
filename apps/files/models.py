@@ -1,10 +1,11 @@
 from django.db import models
-
+from django.forms import ModelForm
 # -*- coding: utf-8 -*-
 
 #from django.contrib.auth.models import User
 
-class Usuario(models.Model): #modelo de la tabla usuarios, en caso de no usar el de Django
+class Usuario(models.Model): 
+    #modelo de la tabla usuarios, en caso de no usar el de Django
 	#idUsr = models.IntegerField()  Django lo genera automáticamente si no lo especificamos
 	nameusr = models.CharField(max_length=30, unique=True)
 	email = models.CharField(max_length=30)
@@ -40,7 +41,8 @@ class Document(models.Model):
 	dateexp= models.DateTimeField(auto_now_add=False)
 	user = models.ForeignKey(Usuario, on_delete=models.CASCADE)#quien lo recibió
 	def __str__(self):
-		return self.description
+		return self.nameusr
+
 	#def __str__(self):
      #   return self.nameusr
 

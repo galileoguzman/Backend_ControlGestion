@@ -1,1 +1,25 @@
-buscar un documento en específico
+{% extends 'base/base.html' %}
+{% block nav %}
+    <nav>
+    <div class="nav-wrapper  red darken-4 col s12">
+    <a href="#" class="brand-logo">Buscar Documento</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/">Inicio</a></li>
+    </ul>
+    </div>
+    </nav>
+
+  <nav>
+    <div class="nav-wrapper  grey lighten-1 r">
+      <form>
+        <div class="input-field ">
+          <input id="search" type="search" placeholder="Ingresa el Folio" required>
+          <label class="label-icon" for="search" ><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+{% endblock %}
+

@@ -22,10 +22,13 @@ from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 from files import views
 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
     url(r'^$', views.home, name='index'),
-    url(r'^capturar/$', views.captura, name='captura'),
+    path('admin/', admin.site.urls),
+    url(r'^capturar/', views.captura, name='captura'),
+    url(r'^captura_edit/(?P<folio>\d+)/$', views.captura_edit, name='captura_edit'),
+    url(r'^document_delete/(?P<folio>\d+)/$', views.document_delete, name='document_delete'),
     url(r'^buscar/$', views.buscar, name='buscar'),
     url(r'^notificaciones/$', views.notificaciones, name='notificaciones'),
     url(r'^enviar/$', views.envios, name='enviar'),
