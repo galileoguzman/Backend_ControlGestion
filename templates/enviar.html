@@ -1,2 +1,22 @@
-{% extends 'home.html' %}
-{% block title %}<a href="#" class="brand-logo">Turnar Documento</a>{% endblock %}
+{% extends 'base/base.html' %}
+{%block usuario%}<link class="right">{{form.user}}</link>{%endblock%}
+{% block nav %}
+    <nav>
+    <div class="nav-wrapper  red darken-4 col s12">
+    <a href="#" class="brand-logo">Enviar Documento </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/">Inicio</a></li>
+    </ul>
+    </div>
+    </nav>
+{% endblock %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+     <div class="container">
+
+	{% csrf_token%}
+    {{ form.as_table }}
+    </div>
+<button type="submit">Guardar</button>
+</form>
+{% endblock %}

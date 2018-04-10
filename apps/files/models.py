@@ -49,10 +49,13 @@ class Document(models.Model):
 class Sending(models.Model):
 #aquí tomamos los datos con los cuales se envía
 	#idTransaccion = IntegerField()  Django lo genera automáticamente si no lo especificamos
-	date = models.DateTimeField(auto_now_add=True) #fecha en la que se envía
-	folio = models.ForeignKey(Document, on_delete=models.CASCADE) #que documento se envía
-	user = models.ForeignKey(Usuario, on_delete=models.CASCADE) #destino
-	annexes = models.FileField(upload_to='archivosenviados/')
+	date = models.DateTimeField(auto_now_add=True) 
+	#fecha en la que se envía
+	folio = models.ForeignKey(Document, on_delete=models.CASCADE) 
+	#que documento se envía
+	user = models.ForeignKey(Usuario, on_delete=models.CASCADE) 
+	#destino
+	annexes = models.FileField(upload_to='archivosenviados/',blank=True, null=True)
 #   annexes = models.ForeignKey(Annexes, on_delet=models.CASCADE)
    
 #class Annexes(models.Model):

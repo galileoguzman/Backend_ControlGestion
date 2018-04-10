@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, TextInput,Textarea, Select,NumberInput, DateInput, SelectDateWidget
-from .models import Document,Usuario
+from .models import Document,Usuario,Sending
 
 
 
@@ -31,6 +31,21 @@ class DocumentForm(forms.ModelForm):
 		'user' : forms.Select(attrs={'class':'browser-default'}),		
 
 		}
-
+class EnvioForm(forms.ModelForm):
+	class Meta:
+		model = Sending
+		fields = '__all__'
+		labels ={
+		'date' : 'Fecha de Envio',
+		'folio' : 'Folio del Documento',
+		'user' : 'Usuario',
+		'annexes' : 'Anexos',
+		}
+		widgets ={
+		'date' : forms.DateInput(attrs={'class': 'col s6','type' : 'date'}),
+		'folio' : forms.TextInput(attrs={'class':'col s6'}),
+		'user' : forms.Select(attrs={'class':'browser-default'}),
+		'annexes' : forms.FileInput(),
+		}
 
 

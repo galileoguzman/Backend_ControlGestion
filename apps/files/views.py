@@ -4,7 +4,7 @@ from django.http import HttpResponse
 #from .forms import NewDocument
 from django.urls import reverse_lazy
 from .models import Document, Sending, Usuario, Reply
-from .forms import  DocumentForm
+from .forms import  DocumentForm, EnvioForm
 from django.views.generic import UpdateView, ListView, CreateView, DeleteView
 
 def home(request):
@@ -56,11 +56,11 @@ class DocumentList(ListView):
     model = Document
     template_name='index.html'
 
-class Documentcreate(CreateView):
-    model = Document
-    form_class= DocumentForm 
-    template_name='captura.html'
-    succes_url = reverse_lazy('index')
+class Enviocreate(CreateView):
+    model = Sending
+    form_class= EnvioForm 
+    template_name='enviar.html'
+    success_url = reverse_lazy('index')
 
 
     

@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^document_delete/(?P<folio>\d+)/$', views.document_delete, name='document_delete'),
     url(r'^buscar/$', views.buscar, name='buscar'),
     url(r'^notificaciones/$', views.notificaciones, name='notificaciones'),
-    url(r'^enviar/$', views.envios, name='enviar'),
+    url(r'^enviar/$', views.Enviocreate.as_view(), name='enviar'),
 
 ]
 
