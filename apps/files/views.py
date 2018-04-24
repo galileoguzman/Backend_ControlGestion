@@ -39,15 +39,16 @@ def captura_edit(request,folio):
         return redirect('index')
     return render(request,'captura.html',{'form':form})
 
-def envios(request,folio):
-    doc = Sending.objects.get(id=folio)
-    if request.method == 'GET':
-        form = EnvioForm()
-    else:
-        form = EnvioForm(request.POST,instance=doc)
+def envios(request):
+    envio = Sending.objects.all()
+    if request.method == 'POST':
+        form = EnvioForm(request.POST,request.FILES)
         if form.is_valid(): 
             form.save()
         return redirect('index')
+        
+    else:
+        form = EnvioForm()
     return render (request, 'enviar.html',{'form':form})
 
 

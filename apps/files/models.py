@@ -5,7 +5,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 
 class Usuario(models.Model): 
-    #modelo de la tabla usuarios, en caso de no usar el de Django
+	#modelo de la tabla usuarios, en caso de no usar el de Django
 	#idUsr = models.IntegerField()  Django lo genera automáticamente si no lo especificamos
 	nameusr = models.CharField(max_length=30, unique=True)
 	email = models.CharField(max_length=30)
@@ -44,7 +44,7 @@ class Document(models.Model):
 		return str(self.folio)
 
 	#def __str__(self):
-     #   return self.nameusr
+	 #   return self.nameusr
 
 class Sending(models.Model):
 #aquí tomamos los datos con los cuales se envía
@@ -53,11 +53,13 @@ class Sending(models.Model):
 	#fecha en la que se envía
 	folio = models.ForeignKey(Document,null=True, blank = True, on_delete=models.CASCADE)  
 	#que documento se envía
-	user = models.ForeignKey(Usuario, on_delete=models.CASCADE) 
+	user = models.ManyToManyField(Usuario, blank=True) 
 	#destino
-	annexes = models.FileField(upload_to='archivosenviados/',blank=True, null=True)
+	annexes = models.FileField(upload_to='archivosenviados/%Y/%m/%d',blank=True, null=True)
 #   annexes = models.ForeignKey(Annexes, on_delet=models.CASCADE)
-   
+	def __str__(self):
+		return str(self.pk)
+
 #class Annexes(models.Model):
 #	files= models.FileField(upload_to='archivosenviados/%Y')
 #	document = models.ForeignKey(Sending, on_delete=models.CASCADE)

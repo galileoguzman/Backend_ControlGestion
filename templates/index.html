@@ -32,7 +32,7 @@
             <td>{{ document.dateexp}}</td>
             <td><a class="btn enabled  red lighten-2 " href="{% url 'captura_edit' document.folio %}" >Editar</a></td>
             <td><a class="btn enabled  red lighten-2" href="{% url 'document_delete' document.folio %}">Eliminar</a></td>
-            <td><a class="btn enabled  red lighten-2" href="{% url 'enviar' document.folio%}">Anexar-Y-Enviar</a></td>
+            <td><a class="btn enabled  red lighten-2" href="{% url 'enviar'%}">Anexar-Y-Enviar</a></td>
             
           </tr>
         {% endfor %}
