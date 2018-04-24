@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'files',
+    'accounts',
     'material',
     'material.frontend',
+    'widget_tweaks',
+    
     
 
 ]
@@ -177,3 +180,6 @@ else:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "static"),
     ]
+LOGOUT_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'

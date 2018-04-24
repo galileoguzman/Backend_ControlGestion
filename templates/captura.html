@@ -1,22 +1,85 @@
 {% extends 'base/base.html' %}
-{%block usuario%}<link class="right">{{form.user}}</link>{%endblock%}
-{% block nav %}
-    <nav>
-    <div class="nav-wrapper  red darken-4 col s12">
-    <a href="#" class="brand-logo">Nuevo Documento </a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/">Inicio</a></li>
-    </ul>
-    </div>
-    </nav>
-{% endblock %}
 {% block content %}
+{% load form_tags widget_tweaks %}
 <form method="post">
-     <div class="container">
+   {% csrf_token%}
+<div class="container">
 
-	{% csrf_token%}
-    {{ form1.as_p }}
-    </div>
-<button type="submit">Guardar</button>
+   <div class="row">
+        
+          <div class="form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
+            <label for='{{form.sender}}'>{{form.sender.label}}</label>
+            {{form.sender}}
+          </div>
+      
+      <div class="col-md-6 col-sm-6 col-xs-12  col-md-offset-2">
+          <div class="form-group">
+            <label >Importancia</label>
+            {{form.importancia}}
+          </div>
+        </div>
+          
+               
+   </div>
+
+
+<div class="row">
+        <div class="col-md-12 col-md-offset-2">
+          <div class="form-group">
+            <label for='{{form.description}}'>{{form.description.label}}</label>
+            {{form.description}}
+          </div>
+        </div>
+ </div>
+
+<div class="row">
+
+        <div class="form-group col-md-4 col-sm-4 col-xs-6 col-md-offset-2">
+            <label for='{{form.dateexp}}' > {{form.dateexp.label}} </label> <br>
+            {{form.dateexp}}
+          </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-6 col-md-offset-2">
+          <div class="form-group">
+            <label for='{{form.numshet}}'>{{form.numshet.label}}</label>
+            {{form.numshet}}
+          </div>
+        </div>
+     
+        <div class="col-md-4 col-sm-4 col-xs-6 col-md-offset-2">
+          <div class="form-group">
+            <label for='{{form.numann}}'>{{form.numann.label}}</label>
+            {{form.numann}}
+          </div>
+        </div>
+</div>
+
+
+<div class="row">
+
+   
+        <div class="col-md-12 col-md-offset-2">
+          <div class="form-group">
+            <label >{{form.user.label}}</label>
+            {{form.user}}
+          </div>
+        </div>
+
+        <div class="col-md-12 col-md-offset-2">
+          <div class="form-group">
+             <button type=" button submit" class="btn btn-success">Capturar</button>
+          </div>
+        </div>
+  
+
+</div>
+</div>
+
+
+
+
+
+
+
 </form>
 {% endblock %}

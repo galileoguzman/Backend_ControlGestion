@@ -11,40 +11,43 @@ class DocumentForm(forms.ModelForm):
 		fields = '__all__'
 		labels = {
 		'folio' : 'Folio',
-		'sender' : 'Destinatario',
+		'sender' : 'Remitente',
 		'description' : 'Descripcion',
 		'importancia' : 'Importancia',
 		'numshet' : 'Numero de Hojas',
 		'numann' : 'Numero de Anexos',
 		'dateexp' : 'Fecha de Expiracion',
-		'user' : 'Usuario que Reviso'	,	
+		'user' : 'Usuario que Revisó'	,	
 
 		}
 		widgets = {
-		'folio' : forms.TextInput(attrs={'class':'col s6'}),
-		'sender' : forms.TextInput(attrs={'class': 'col s6'}),
-		'description' : forms.Textarea(attrs={'class': 'col s6'}),
-		'importancia' : forms.Select(attrs={'class':'browser-default'}),
-		'numshet' : forms.NumberInput(attrs={'class': 'col s6'}),
-		'numann' : forms.NumberInput(attrs={'class': 'col s6'}),
-		'dateexp' : forms.DateInput(attrs={'class': 'col s6','type' : 'date'}),
-		'user' : forms.Select(attrs={'class':'browser-default'}),		
+		'folio' : forms.TextInput(attrs={'class':'form-control'}),
+		'sender' : forms.TextInput(attrs={'class': 'form-control'}),
+		'description' : forms.Textarea(attrs={'class': 'form-control'}),
+		'importancia' : forms.Select(attrs={'class':'form-control'}),
+		'numshet' : forms.NumberInput(attrs={'class': 'form-control'}),
+		'numann' : forms.NumberInput(attrs={'class': 'form-control'}),
+		'dateexp' : forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
+		'user' : forms.Select(attrs={'class':'form-control' }),		
 
 		}
 class EnvioForm(forms.ModelForm):
 	class Meta:
 		model = Sending
-		fields = '__all__'
+		fields = [
+		'folio',
+		'user',
+		'annexes',
+
+		]
 		labels ={
-		'date' : 'Fecha de Envio',
-		'folio' : 'Folio del Documento',
-		'user' : 'Usuario',
+		'folio' : 'Folio',
+		'user' : 'Destinatario',
 		'annexes' : 'Anexos',
 		}
 		widgets ={
-		'date' : forms.DateInput(attrs={'class': 'col s6','type' : 'date'}),
-		'folio' : forms.TextInput(attrs={'class':'col s6'}),
-		'user' : forms.Select(attrs={'class':'browser-default'}),
+		'folio' : forms.Select(attrs={'class':'browser-default'}),
+		'user' : forms.CheckboxSelectMultiple(),
 		'annexes' : forms.FileInput(),
 		}
 

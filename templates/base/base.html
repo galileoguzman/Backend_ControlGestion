@@ -1,42 +1,78 @@
 {% load static %}<!DOCTYPE html>
+{% if user.is_authenticated %}
+<html lang="en">
 
-<html>
- 
   <head>
-  
-    <meta charset="utf-8">
-       <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{% static '/css/materialize.min.css' %}"  media="screen,projection"/>
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-     <script type="text/javascript" src="{% static '/js/materialize.js' %}"></script>
-     <script type="text/javascript" src="{% static '/js/materialize.min.js' %}"></script>
-    <img src="{% static '/images/logo-ieepco.png' %}">
-    <title>IEEPCO, Instituto Estatal Electoral y de Participación Ciudadana de Oaxaca. -  IEEPCO</title>
-    <!--<i class="large material-icons">account_circle</i>{{document.user_id}}-->
-    <link href="#!" class="brand-logo"><i class="large right material-icons" >account_circle</i>
-    {%block usuario%}{%endblock%}
-    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}"> 
-    {% block nav %} 
 
-    {% endblock %}
- 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Sistema de Archivos del IEEPCO">
+    <meta name="author" content="UTSID">
+
+    <title>IEEPCO, Instituto Estatal Electoral y de Participación Ciudadana de Oaxaca. -  IEEPCO</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/logo-nav.css' %}" rel="stylesheet">
+
   </head>
- 
-  
+
   <body>
+
+    <!-- Navigation -->
+      <nav class="navbar navbar-expand-xl  navbar-dark fixed-top" style="background-color: #7b1317;">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'images/logo-ieepco.png' %}" width="200" height="60" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/capturar" >Capturar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Buscar</a>
+            </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+              <a class="dropdown-item" href="#">My account</a>
+              <a class="dropdown-item" href="#">Change password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+            </div>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <br>
+    <div class="table-responsive">
     {% block content%}
     {% endblock %}
+    <!-- /.container -->
+   </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-      </tbody>
-    </table>
   </body>
-        <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="{% static '/js/materialize.min.js' %}"></script>
-    </body>
-  
+
 </html>
+{% else %} 
+ hola
+{% endif %}

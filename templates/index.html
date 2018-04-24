@@ -1,61 +1,42 @@
 {% extends 'base/base.html' %}
 
-  {% block nav %}
-    <nav>
-    <div class="nav-wrapper  red darken-4">
-    <a href="#" class="brand-logo">Últimos Documentos</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/capturar">Capturar</a></li>
-      <li><a href="/buscar">Buscar</a></li>
-      <li><a href="/notificaciones">Notificaciones<span class="new badge">4</span></a></li>
-    </ul>
-    </div>
-    </nav>
-      <nav>
-    <div class="nav-wrapper  grey lighten-1 r">
-      <form>
-        <div class="input-field ">
-          <input id="search" type="search" placeholder="Ingresa el Folio" required>
-          <label class="label-icon" for="search" ><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form>
-    </div>
-  </nav>
-  {% endblock %}
+
+ 
 {% block content %}
   <body>
-    <table border="1" class="striped">
+    <table class="table  table-bordered">
       <thead>
         <tr>
-          <th>Folio</th>
-          <th>Remitente</th>
-          <th>Fecha</th>
-          <th>Importancia</th>
-          <th>Fecha de Expiracion</th>
-          <th>Opciones</th>
+          <th scope="col">Folio</th>
+          <th scope="col">Remitente</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Importancia</th>
+          <th scope="col">Fecha de Expiracion</th>
+          <th scope="col ">Opciones</th>
 
         </tr>
       </thead>
       <tbody>
         
           <tr>
-          	{% for document in files%}
-            <td>
+          	{% for document in form%}
+            <th scope="row">
 
               {{ document.folio }}
               <!--<br>
               <small style="color: #888">{{ document.description }}</small> -->
-            </td>
+            </th>
             <td>{{ document.sender }}</td>
             <td>{{ document.date }}</td>
             <td>{{ document.importancia}}</td>
             <td>{{ document.dateexp}}</td>
             <td><a class="btn enabled  red lighten-2 " href="{% url 'captura_edit' document.folio %}" >Editar</a></td>
             <td><a class="btn enabled  red lighten-2" href="{% url 'document_delete' document.folio %}">Eliminar</a></td>
-            <td><a class="btn enabled  red lighten-2">Consultar</a></td>
+            <td><a class="btn enabled  red lighten-2" href="{% url 'enviar' document.folio%}">Anexar-Y-Enviar</a></td>
             
           </tr>
         {% endfor %}
-        {% endblock %}
+   
       </tbody>
+    </table>
+           {% endblock %}

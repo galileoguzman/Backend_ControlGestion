@@ -2,7 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 # -*- coding: utf-8 -*-
 
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 class Usuario(models.Model): 
     #modelo de la tabla usuarios, en caso de no usar el de Django
@@ -11,7 +11,7 @@ class Usuario(models.Model):
 	email = models.CharField(max_length=30)
 	password = models.CharField(max_length=100)
 	user = models.CharField(max_length=30)
-	def __str__(self):
+	def __str__(self): 
 		return self.nameusr
 
 class Area(models.Model): #Aqui nombramos a las areas existentes
@@ -31,7 +31,7 @@ class Importan(models.Model):
 
 class Document(models.Model):
 #tomamos los datos del documento, le asignamos folio, lo describimos y se le asigna una fecha de creacion automática
-	folio = models.IntegerField(primary_key = True ) #especificamos que esta es la llave principal
+	folio = models.AutoField(primary_key = True ) #especificamos que esta es la llave principal
 	sender = models.TextField(max_length=100)#quien lo envía
 	description = models.TextField(max_length=1000)
 	date = models.DateTimeField(auto_now_add=True) #Fecha en que se creó el documento
@@ -41,7 +41,7 @@ class Document(models.Model):
 	dateexp= models.DateTimeField(auto_now_add=False)
 	user = models.ForeignKey(Usuario, on_delete=models.CASCADE)#quien lo recibió
 	def __str__(self):
-		return self.nameusr
+		return str(self.folio)
 
 	#def __str__(self):
      #   return self.nameusr
@@ -51,7 +51,7 @@ class Sending(models.Model):
 	#idTransaccion = IntegerField()  Django lo genera automáticamente si no lo especificamos
 	date = models.DateTimeField(auto_now_add=True) 
 	#fecha en la que se envía
-	folio = models.ForeignKey(Document, on_delete=models.CASCADE) 
+	folio = models.ForeignKey(Document,null=True, blank = True, on_delete=models.CASCADE)  
 	#que documento se envía
 	user = models.ForeignKey(Usuario, on_delete=models.CASCADE) 
 	#destino

@@ -1,25 +1,32 @@
+
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 #from django.shortcuts import render, redirec, get_object_or_404
 #from .forms import NewDocument
 from django.urls import reverse_lazy
 from .models import Document, Sending, Usuario, Reply
 from .forms import  DocumentForm, EnvioForm
 from django.views.generic import UpdateView, ListView, CreateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib import messages
 
+@login_required
 def home(request):
-    files = Document.objects.all().order_by('folio')
-    return render(request,'index.html',{'files': files})
-
+    form = Document.objects.all().order_by('-folio')
+    contexto = {'form':form}
+    return render(request,'index.html',contexto)
+ 
 def captura(request):
+    documento = Document.objects.all()
     if request.method == 'POST':
         form = DocumentForm(request.POST)
-        if form.is_valid():
+        if form.is_valid(): 
             form.save()
         return redirect('index')
     else:
-        form = DocumentForm()
-    return render (request, 'captura.html',{'form1':form})
+        form = DocumentForm()  
+    return render (request, 'captura.html',{'form':form})
 
 def captura_edit(request,folio):
     documento = Document.objects.get(folio=folio)
@@ -30,7 +37,19 @@ def captura_edit(request,folio):
         if form.is_valid():
             form.save()
         return redirect('index')
-    return render(request,'captura.html',{'form1':form})
+    return render(request,'captura.html',{'form':form})
+
+def envios(request,folio):
+    doc = Sending.objects.get(id=folio)
+    if request.method == 'GET':
+        form = EnvioForm()
+    else:
+        form = EnvioForm(request.POST,instance=doc)
+        if form.is_valid(): 
+            form.save()
+        return redirect('index')
+    return render (request, 'enviar.html',{'form':form})
+
 
 def document_delete(request,folio):
     documento = Document.objects.get(folio=folio)
@@ -47,16 +66,23 @@ def notificaciones(request):
     # do something...
     return render(request, 'notificaciones.html')
 
-def envios(request):
-	# do something
-	return render(request, 'enviar.html')
+
+
 
 
 class DocumentList(ListView):
     model = Document
     template_name='index.html'
+    ordering =['-folio']
 
-class Enviocreate(CreateView):
+class DocumentCreate(CreateView):
+    model = Document
+
+    template_name = 'captura.html'
+    form_class = DocumentForm
+    success_url = reverse_lazy('index')
+
+class Enviocreate(CreateView): 
     model = Sending
     form_class= EnvioForm 
     template_name='enviar.html'

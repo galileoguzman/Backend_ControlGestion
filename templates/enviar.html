@@ -1,22 +1,39 @@
 {% extends 'base/base.html' %}
-{%block usuario%}<link class="right">{{form.user}}</link>{%endblock%}
-{% block nav %}
-    <nav>
-    <div class="nav-wrapper  red darken-4 col s12">
-    <a href="#" class="brand-logo">Enviar Documento </a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/">Inicio</a></li>
-    </ul>
-    </div>
-    </nav>
-{% endblock %}
 {% block content %}
+<br>
 <form method="post" enctype="multipart/form-data">
      <div class="container">
 
 	{% csrf_token%}
-    {{ form.as_table }}
+
+<div class="row">
+        <div class="form-group col-md-3 col-sm-3 col-xs-3 col-md-offset-2">
+            <label for='{{form.folio}}' > {{form.folio.label}} </label> <br>
+            {{form.folio}}{{doc.folio}}
+          </div>
+
+
+        <div class="form-group col-md-12 col-sm-12 col-xs-6 col-md-offset-2">
+            <label for='{{form.user}}' > {{form.user.label}} </label> <br>
+            {{form.user}}
+          </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-6 col-md-offset-2">
+          <div class="form-group">
+            <label for='{{form.annexes}}'>{{form.annexes.label}}</label>
+            {{form.annexes}}
+          </div>
+        </div>
+        <div class="col-md-12 col-md-offset-2">
+          <div class="form-group">
+             <button type=" button submit" class="btn btn-success">Enviar</button>
+          </div>
+        </div>
+     
+</div>
+
+   
     </div>
-<button type="submit">Guardar</button>
+
 </form>
 {% endblock %}

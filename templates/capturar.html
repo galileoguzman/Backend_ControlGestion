@@ -131,3 +131,75 @@
 
    {%endif%}
     </div>
+
+
+
+
+
+
+
+
+     def get_context_data(self, **kwargs):
+        context = super(DocumentCreate,self).get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+            return context
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+        if form.is_valid() and form2.is_valid():
+            documento = form.save(commit=False)
+            documento.folio = form2.save()
+            documento.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self,get_context_data(form = form, form2=form2))
+     
+
+      {% block nav %}
+    <nav>
+    <div class="nav-wrapper  red darken-4">
+    <a href="#" class="brand-logo">Últimos Documentos</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/capturar">Capturar</a></li>
+      <li><a href="/buscar">Buscar</a></li>
+      <li><a href="/notificaciones">Notificaciones<span class="new badge">4</span></a></li>
+    </ul>
+    </div>
+    </nav>
+      <nav>
+    <div class="nav-wrapper  grey lighten-1 r">
+      <form>
+        <div class="input-field ">
+          <input id="search" type="search" placeholder="Ingresa el Folio" required>
+          <label class="label-icon" for="search" ><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  {% endblock %}
+
+
+
+      def get_context_data(self, **kwargs):
+        context = super(DocumentCreate,self).get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+            return context
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+        if form.is_valid() and form2.is_valid():
+            documento = form.save(commit=False)
+            documento.folio = form2.save()
+            documento.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self,get_context_data(form = form, form2=form2))
