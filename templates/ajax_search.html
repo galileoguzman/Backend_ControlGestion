@@ -1,0 +1,11 @@
+{% if articles.count > 0 %}
+
+{% for article in articles %}
+<li><a href="{% url 'captura_edit' article.folio %}">Folio: {{article.folio}}       Remitente--{{article.sender}} Fecha de Creación {{article.date}}</a></li>
+{% endfor %}
+
+{% else %}
+
+<li>NADA QUE MOSTRAR!</li>
+
+{% endif %}

@@ -1,25 +1,20 @@
 {% extends 'base/base.html' %}
-{% block nav %}
-    <nav>
-    <div class="nav-wrapper  red darken-4 col s12">
-    <a href="#" class="brand-logo">Buscar Documento</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/">Inicio</a></li>
-    </ul>
-    </div>
-    </nav>
-
-  <nav>
-    <div class="nav-wrapper  grey lighten-1 r">
-      <form>
-        <div class="input-field ">
-          <input id="search" type="search" placeholder="Ingresa el Folio" required>
-          <label class="label-icon" for="search" ><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form>
-    </div>
-  </nav>
-
+{% load static from staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'css/styles.css'%}">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+    
+<script type="text/javascript" src="{% static 'js/ajax.js' %}" rel="stylesheet"></script>
 {% endblock %}
 
+{% block content %}
+
+<h3>Search</h3>
+{% csrf_token %}
+<input type="text" name="search" id="search">
+<ul id="search-results">
+	
+</ul>
+
+{% endblock %}

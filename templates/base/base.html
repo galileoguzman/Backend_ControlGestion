@@ -1,6 +1,6 @@
 {% load static %}<!DOCTYPE html>
 {% if user.is_authenticated %}
-<html lang="en">
+<html lang="es-mx">
 
   <head>
 
@@ -10,7 +10,8 @@
     <meta name="author" content="UTSID">
 
     <title>IEEPCO, Instituto Estatal Electoral y de Participación Ciudadana de Oaxaca. -  IEEPCO</title>
-
+{% block head %}
+{% endblock %}
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -25,7 +26,7 @@
       <nav class="navbar navbar-expand-xl  navbar-dark fixed-top" style="background-color: #7b1317;">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="{% static 'images/logo-ieepco.png' %}" width="200" height="60" class="d-inline-block align-top" alt="">
+          <img src="{% static '/images/logo-ieepco.png' %}" width="200" height="60" class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -38,10 +39,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/capturar" >Capturar</a>
+              <a class="nav-link" href="/capturar">Capturar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Buscar</a>
+              <a class="nav-link" href="/buscar">Buscar</a>
             </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,5 +75,5 @@
 
 </html>
 {% else %} 
- hola
+ Nada que mostrar
 {% endif %}

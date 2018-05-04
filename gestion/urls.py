@@ -21,10 +21,12 @@ from django.urls import path
 from django.conf.urls import include, url
 
 from files import views 
+from ajax import views as ajax_view
+
 from django.contrib.auth import views as auth_views
 
 from accounts import views as accounts_views
-
+ 
 urlpatterns = [
     url(r'^$', views.home, name='index'),
     path('admin/', admin.site.urls),
@@ -32,12 +34,12 @@ urlpatterns = [
     url(r'^captura_edit/(?P<folio>\d+)/$', views.captura_edit, name='captura_edit'),
     url(r'^document_delete/(?P<folio>\d+)/$', views.document_delete, name='document_delete'),
     url(r'^buscar/$', views.buscar, name='buscar'),
-    url(r'^notificaciones/$', views.notificaciones, name='notificaciones'),
-    url(r'^enviar/$', views.envios , name='enviar'),
+    #url(r'^notificaciones/$', views.notificaciones, name='notificaciones'),
+    url(r'^enviar/(?P<folio>\d+)/$', views.envios , name='enviar'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-
+    url(r'^search/$', views.search_sender),
     url(r'^reset/$',
         auth_views.PasswordResetView.as_view(
             template_name='password_reset.html',

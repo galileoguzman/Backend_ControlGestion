@@ -12,7 +12,7 @@
           <th scope="col">Fecha</th>
           <th scope="col">Importancia</th>
           <th scope="col">Fecha de Expiracion</th>
-          <th scope="col ">Opciones</th>
+          <th scope="col " colspan="3">Opciones</th>
 
         </tr>
       </thead>
@@ -30,9 +30,14 @@
             <td>{{ document.date }}</td>
             <td>{{ document.importancia}}</td>
             <td>{{ document.dateexp}}</td>
-            <td><a class="btn enabled  red lighten-2 " href="{% url 'captura_edit' document.folio %}" >Editar</a></td>
-            <td><a class="btn enabled  red lighten-2" href="{% url 'document_delete' document.folio %}">Eliminar</a></td>
-            <td><a class="btn enabled  red lighten-2" href="{% url 'enviar'%}">Anexar-Y-Enviar</a></td>
+            <td><a class="btn enabled  red lighten-2 " href="{% url 'captura_edit' document.folio %}" >
+              <img src="static/images/editar.png" title="Editar" alt="Editar" style="width: 25px; height: 25px;"></a></td>
+            <td><a class="btn enabled  red lighten-2" href="{% url 'document_delete' document.folio %}">
+              <img src="static/images/eliminar.png" title="Eliminar" alt="Eliminar" style="width: 25px; height:25px;">
+            </a></td>
+            <td><a class="btn enabled  red lighten-2" href="{% url 'enviar' document.folio%}">
+              <img src="static/images/send.png" title="Enviar a..." alt="Enviar" style="width: 30px; height:30px;">
+            </a></td>
             
           </tr>
         {% endfor %}

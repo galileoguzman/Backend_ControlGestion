@@ -17,13 +17,17 @@ class Usuario(models.Model):
 class Area(models.Model): #Aqui nombramos a las areas existentes
 	#idArea = models.IntegerField()  Django lo genera automáticamente si no lo especificamos
 	namearea= models.CharField(max_length=30)
+	
+	def __str__(self):
+		return self.namearea
 
 class areaUsr(models.Model):
 #Un usuario puede pertenecer a una o más áreas y para no hacer un usuario por área, 
 #sólo elegimos a que áreas va a pertenecer
 	usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 	area = models.ForeignKey(Area, on_delete=models.CASCADE)
-
+	def __str__(self):
+		return str(self.id)
 class Importan(models.Model):
 	nameimp = models.CharField(max_length=30)
 	def __str__(self):
@@ -43,6 +47,7 @@ class Document(models.Model):
 	def __str__(self):
 		return str(self.folio)
 
+		
 	#def __str__(self):
 	 #   return self.nameusr
 
