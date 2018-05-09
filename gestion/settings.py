@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'files',
    
     'accounts',
-    'material',
-    'material.frontend',
     'widget_tweaks',
     
     
