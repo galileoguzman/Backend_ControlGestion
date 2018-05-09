@@ -4,7 +4,6 @@ from .models import Document,Usuario,Sending
 
 
 
-
 class DocumentForm(forms.ModelForm):
 	class Meta:
 		model = Document
@@ -31,6 +30,7 @@ class DocumentForm(forms.ModelForm):
 		'user' : forms.Select(attrs={'class':'form-control' }),		
 
 		}
+
 class EnvioForm(forms.ModelForm):
 	class Meta:
 		model = Sending
@@ -46,7 +46,7 @@ class EnvioForm(forms.ModelForm):
 		'annexes' : 'Anexos',
 		}
 		widgets ={
-		'folio' : forms.Select(attrs={'class':'browser-default'}),
+		'folio' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresa Folio' }),
 		'user' : forms.CheckboxSelectMultiple(),
 		'annexes' : forms.FileInput(),
 		}

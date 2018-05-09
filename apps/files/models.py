@@ -58,7 +58,7 @@ class Sending(models.Model):
 	#fecha en la que se envía
 	folio = models.ForeignKey(Document,null=True, blank = True, on_delete=models.CASCADE)  
 	#que documento se envía
-	user = models.ManyToManyField(Usuario, blank=True) 
+	user = models.ManyToManyField(User, blank=True) 
 	#destino
 	annexes = models.FileField(upload_to='archivosenviados/%Y/%m/%d',blank=True, null=True)
 #   annexes = models.ForeignKey(Annexes, on_delet=models.CASCADE)

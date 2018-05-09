@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+
+ 
+{% block content %}
+  <body>
+    <table class="table  table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Envio #</th>
+          <th scope="col">Fecha de Envio</th>
+          <th scope="col">Anexo</th>
+          <th scope="col">documento enviado</th>
+          <th scope="col">Destinatarios</th>
+          
+          
+
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+          	{% for sendig in object_list %}
+            <th scope="row">
+
+              {{ sendig.id }}
+              <!--<br>
+              <small style="color: #888">{{ document.description }}</small> -->
+            </th>
+            <td>{{ sendig.date }}</td>
+            <td>{{ sendig.annexes }}</td>
+            <td>{{ sendig.folio_id}}</td>
+            <td>{{ sendig.user}}</td>
+
+
+            
+          </tr>
+        {% endfor %}
+   
+      </tbody>
+    </table>
+  </body>
+           {% endblock %}

@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse_lazy
 from .models import Document, Sending, Usuario, Reply
 from .forms import  DocumentForm, EnvioForm
-from django.views.generic import UpdateView, ListView, CreateView, DeleteView
+from django.views.generic import UpdateView, ListView, CreateView, DeleteView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
@@ -17,7 +17,14 @@ def home(request):
     form = Document.objects.all().order_by('-folio')
     contexto = {'form':form}
     return render(request,'index.html',contexto)
- 
+
+def detail(request,folio):
+    form = Sending.objects.get(folio_id = folio)
+    if request.method == 'GET':
+        contexto = {'form':form}
+        return render(request,'detail.html',contexto)
+
+
 def captura(request):
     documento = Document.objects.all()
     if request.method == 'POST':
@@ -40,18 +47,30 @@ def captura_edit(request,folio):
         return redirect('index')
     return render(request,'captura.html',{'form':form})
 
+def captura_history(request,folio):
+    documento = Sending.objects.get(folio=folio)
+    if request.method == 'GET':
+        form = DocumentForm(instance=documento)
+    else:
+        form = DocumentForm(request.POST,instance=documento)
+        if form.is_valid():
+            form.save()
+        return redirect('index')
+    return render(request,'captura.html',{'form':form})
+
 def envios(request,folio):
     envio = Sending.objects.all()
     documento = Document.objects.get(folio = folio)
     if request.method == 'POST':
         form = EnvioForm(request.POST,request.FILES)
-        if form.is_valid(): 
+        if form.is_valid():
            form.save()
         return redirect('index')
         
     else:
         documento = Document.objects.get(folio = folio)
-        form = EnvioForm()
+        form = EnvioForm(initial={'folio':folio})
+    # form.folio=documento.folio
     return render (request, 'enviar.html',{'form':form, 'documento':documento})
 
 def document_delete(request,folio):
@@ -63,14 +82,15 @@ def document_delete(request,folio):
 
 def buscar(request):
     
-        q=request.GET.get('q','')
-        results  = Document.objects.filter(description__icontains=q)
+  #      q=request.GET.get('q','')
+   #     results  = Document.objects.filter(folio__icontains=q)
         #documento = get_object_or_404(Document,sender__icontains='q')
         
    
-        results = []
-        return render(request, 'buscar.html', {'results':results})
+    #    results = []
+     #   return render(request, 'buscar.html', {'results':results})
 
+         return render(request, 'buscar.html')
     
    #     return HttpResponse(json.dumps(usuario),content_type='application/json')
     #else:
@@ -81,7 +101,7 @@ def search_sender(request):
         search_text = request.POST['search_text']
     else:
         search_text=''
-
+ 
     articles= Document.objects.filter(folio__icontains=search_text)
     return render_to_response('ajax_search.html', {'articles':articles})
 
@@ -95,10 +115,11 @@ def user_edit(request):
 
 
 
-class DocumentList(ListView):
-    model = Document
-    template_name='index.html'
-    ordering =['-folio']
+class SendingList(ListView):
+    model = Sending
+    template_name='history.html'
+    #slug_field = 'folio'
+    ordering = ['-pk']
 
 class DocumentCreate(CreateView):
     model = Document

@@ -1,14 +1,14 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <br>
-<form method="post" >
+<form method="post" enctype="multipart/form-data" >
+    {% csrf_token%}
      <div class="container">
 <div class="row" >
         <div class="form-group col-md-3 col-sm-3 col-xs-3 col-md-offset-2">
-            <label for='{{form.folio}}' >{{form.folio.label}} </label>
+            <label for='{{form.folio}}'>{{form.folio.label}} </label>
            {{form.folio}}
           </div>
-
 
         <div class="form-group col-md-12 col-sm-12 col-xs-6 col-md-offset-2">
             <label for='{{form.user}}' > {{form.user.label}} </label> <br>

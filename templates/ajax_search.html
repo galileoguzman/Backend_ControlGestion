@@ -1,11 +1,54 @@
 {% if articles.count > 0 %}
+<table id="search-results" class="table  table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Folio</th>
+          <th scope="col">Remitente</th>
+          <th scope="col">Fecha de Creación</th>
+          <th scope="col">Importancia</th>
+          <th scope="col">Fecha de Expiracion</th>
+          <th scope="col">Usuario que Revisó</th>
+          <th scope="col " colspan="4">Opciones</th>
 
-{% for article in articles %}
-<li><a href="{% url 'captura_edit' article.folio %}">Folio: {{article.folio}}       Remitente--{{article.sender}} Fecha de Creación {{article.date}}</a></li>
-{% endfor %}
+        </tr>
+      </thead>
+
+       <tbody>
+        
+          <tr>
+            {% for article in articles %}
+            <th scope="row">
+
+              {{ article.folio }}
+              <!--<br>
+              <small style="color: #888">{{ document.description }}</small> -->
+            </th>
+            <td>{{ article.sender }}</td>
+            <td>{{ article.date }}</td>
+            <td>{{ article.importancia }}</td>
+            <td>{{ article.dateexp }}</td>
+            <td>{{ article.user}}</td>
+            <td><a class="btn enabled  red lighten-2 " href="{% url 'captura_edit' article.folio %}" >
+              <img src="../static/images/editar.png" title="Editar" alt="Editar" style="width: 25px; height: 25px;"></a></td>
+              <td><a class="btn enabled  red lighten-2 " href="{% url 'captura_history' %}" >
+              <img src="../static/images/ojo.png" title="Editar" alt="Editar" style="width: 25px; height: 25px;"></a></td>
+
+            <td><a class="btn enabled  red lighten-2" href="{% url 'document_delete' article.folio %}">
+              <img src="../static/images/eliminar.png" title="Eliminar" alt="Eliminar" style="width: 25px; height:25px;">
+            </a></td>
+            <td><a class="btn enabled  red lighten-2" href="{% url 'enviar' article.folio%}">
+              <img src="../static/images/send.png" title="Enviar a..." alt="Enviar" style="width: 30px; height:30px;">
+            </a></td>
+            
+          </tr>
+            {% endfor %}
+   
+      </tbody>
 
 {% else %}
 
 <li>NADA QUE MOSTRAR!</li>
 
-{% endif %}
+{% endif %}  
+
+
